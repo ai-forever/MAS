@@ -1,6 +1,8 @@
 # MAS: A Millennium of Arabic Manuscripts in Three Styles
 
-**MAS (Medieval Arabic Script)** is a multi-domain line-level OCR benchmark for historical Arabic manuscripts spanning from the 10th to the 20th century. This repository contains the training and evaluation configurations used for benchmarking state-of-the-art OCR systems and Large Vision-Language Models (LVLMs) on this dataset.
+**MAS (Medieval Arabic Script)** is a multi-domain line-level OCR benchmark for historical Arabic manuscripts spanning from the 10th to the 20th century. This repository contains the training and evaluation configurations accompanying our [ICDAR 2026 paper](https://link.springer.com/chapter/10.1007/978-3-032-36033-5_38).
+
+The dataset is available on Hugging Face: [maximazzik/MAS](https://huggingface.co/datasets/maximazzik/MAS).
 
 ## 📖 Overview
 
@@ -10,7 +12,12 @@ The MAS dataset aims to bridge the gap in Arabic OCR by providing authentic hist
 - **Multiple scholarly domains**: Astronomy, History, Mathematics, Religion, and Sufi Literature.
 - **Millennium coverage**: Documents dating from the 10th to the 20th centuries.
 
-Our research demonstrates that while modern LVLMs (like GPT-4o and Gemini) show limited zero-shot performance on medieval scripts, they significantly outperform traditional OCR systems after parameter-efficient fine-tuning (SFT).
+Our research demonstrates that modern LVLMs have poor zero-shot performance on medieval scripts. After parameter-efficient fine-tuning, compact open-source LVLMs surpass the evaluated proprietary zero-shot models and approach strong specialized OCR baselines.
+
+## 🔗 Resources
+
+- **ICDAR 2026 paper:** [A Millennium of Arabic Manuscripts in Three Styles: A Line-Level OCR Benchmark for Naskh, Taliq, and Nastaliq](https://link.springer.com/chapter/10.1007/978-3-032-36033-5_38)
+- **Dataset:** [MAS on Hugging Face](https://huggingface.co/datasets/maximazzik/MAS)
 
 ## 📂 Repository Structure
 
@@ -48,7 +55,7 @@ python -m lmms_eval --model qwen2_5_vl --model_args pretrained=model_path --task
 ## 🚀 Key Findings
 
 Our experimental analysis reveals that:
-1. **LVLMs are promising**: After fine-tuning, compact open-source LVLMs surpass many traditional OCR tools on historical data.
+1. **LVLMs are promising**: After fine-tuning, compact open-source LVLMs surpass the evaluated proprietary zero-shot models and approach strong specialized OCR baselines.
 2. **Domain Specificity Matters**: Supervision on authentic medieval manuscripts is crucial. Training on modern or synthetic data alone only partially addresses the gaps caused by temporal and stylistic shifts.
 3. **Generalization**: The inclusion of diverse calligraphic styles in MAS ensures better model robustness across different archival hands.
 
@@ -57,13 +64,16 @@ Our experimental analysis reveals that:
 If you use the MAS dataset or these configurations in your research, please cite:
 
 ```bibtex
-@article{mas2026ocr,
+@inproceedings{novopoltsev2027mas,
   title={A Millennium of Arabic Manuscripts in Three Styles: A Line-Level OCR Benchmark for Naskh, Taliq, and Nastaliq},
-  author={TODO},
-  journal={ICDAR},
-  year={2026}
+  author={Novopoltsev, Maxim and Murtazin, Ruslan and Sakhovskiy, Andrey and Bojarskaja, Emilia and Kokh, Vladimir and Ulitin, Ivan and Abdullayev, Botirjon and Aminov, Khamidulla and Ismoilov, Masudkhon and Budennyy, Semen},
+  booktitle={Document Analysis and Recognition -- ICDAR 2026},
+  pages={643--659},
+  year={2027},
+  publisher={Springer Nature Switzerland},
+  doi={10.1007/978-3-032-36033-5_38}
 }
 ```
 
 ---
-*Developed as part of the ICDAR 2026 competition research.*
+*Official code and configurations for the MAS paper presented at ICDAR 2026.*
