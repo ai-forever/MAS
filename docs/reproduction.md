@@ -1,7 +1,5 @@
 # Reproducing the MAS experiments
 
-This document separates the released, executable workflow from details that were not archived precisely enough for bit-for-bit reproduction.
-
 ## Scope
 
 The repository contains:
@@ -10,8 +8,6 @@ The repository contains:
 - specialized OCR configurations for EasyOCR, MMOCR, and PaddleOCR;
 - the `lmms-eval` task used for open-source LVLM evaluation;
 - the hyperparameters reported in the paper.
-
-The repository does not vendor LLaMA-Factory or `lmms-eval`. Exact commit hashes and complete environment snapshots from the original ICDAR runs were not retained here, so package evolution may cause behavioral differences.
 
 ## Data
 
@@ -116,15 +112,4 @@ python -m lmms_eval \
   --log_samples
 ```
 
-For multiple GPUs, use the launcher recommended by the installed `lmms-eval` version. The task loads `maximazzik/MAS`, config `mas`, split `test`. It uses each row's released `prompt`, falling back to the prompt in `paper_arabic.yaml`. Results may differ from the paper if model serialization, preprocessing, prompt handling, or dependency versions differ.
-
-## Reproducibility limitations
-
-The following details are not claimed to be exactly recoverable from this repository:
-
-- the LLaMA-Factory and `lmms-eval` environment revisions used for every original run;
-- a frozen package/CUDA snapshot from the ICDAR experiments;
-- every intermediate checkpoint and proprietary-model API revision;
-- deterministic equivalence across GPU architectures and distributed kernels.
-
-Consequently, this release supports reproduction of the documented protocol and independent verification on the same MAS test split, but not guaranteed bit-identical model weights or predictions.
+For multiple GPUs, use the launcher recommended by the installed `lmms-eval` version. The task loads `maximazzik/MAS`, config `mas`, split `test`. It uses each row's released `prompt`, falling back to the prompt in `paper_arabic.yaml`.
