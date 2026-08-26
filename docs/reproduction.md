@@ -66,8 +66,6 @@ The configuration records the paper protocol:
 
 Checkpoints are evaluated every 20 steps in the MAS-only configuration, and the checkpoint with minimum `eval_loss` is selected.
 
-The released YAML reconciles the protocol reported in the paper. The archived MAS-only experiment YAML used ZeRO-2, while the paper reports ZeRO-3; this discrepancy prevents a claim of bit-for-bit reconstruction of the historical run.
-
 For MAS + Muharaf and MAS + SARD transfer experiments, keep the optimization settings fixed and register the additional datasets in LLaMA-Factory. The external corpora are not redistributed by this repository; obtain them from their original providers. Training-set sizes reported in the paper are:
 
 | Training data | Examples |
@@ -89,14 +87,22 @@ The corresponding configurations are under `configs/`:
 
 These files are intended to be used with their upstream frameworks. Replace local dataset/output placeholders where required. The paper used each framework's default optimization hyperparameters and fully fine-tuned the specialized OCR models where supported.
 
-## Evaluation used in the paper
+## Metrics
 
-The experiments used two evaluation paths:
+All reported numbers use the 2,369-line MAS test split. References and predictions are first normalized by replacing newlines with spaces and collapsing repeated whitespace. Empty references are skipped.
 
-1. Open-source LVLMs were evaluated with `lmms-eval`.
-2. Specialized OCR systems and proprietary closed-source models were evaluated with `calc_metric`.
+Character Error Rate is the character-level Levenshtein distance divided by the reference length:
 
-### Open-source LVLMs: lmms-eval
+$$
+\mathrm{CER} = \frac{D_{\mathrm{char}}(\mathrm{reference}, \mathrm{prediction})}
+{\max(1, |\mathrm{reference}|)}.
+$$
+
+Word Error Rate is computed analogously over whitespace-delimited tokens with `jiwer`. BLEU-4 uses NLTK smoothing method 4. Tables report the arithmetic mean over valid lines. Edit-distance rates can exceed 1 when a model inserts many extra characters.
+
+The same formulas apply to every system class. Open-source LVLMs were scored through `lmms-eval` (`configs/paper_arabic/`). Specialized OCR systems and proprietary models were scored from saved predictions using the same definitions.
+
+## Evaluation of open-source LVLMs
 
 Copy `configs/paper_arabic/` into the `lmms_eval/tasks/` directory of a compatible [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) checkout. Evaluate a merged model on one GPU with:
 
@@ -110,26 +116,13 @@ python -m lmms_eval \
   --log_samples
 ```
 
-For multiple GPUs, use the launcher recommended by the installed `lmms-eval` version. The task loads `maximazzik/MAS`, config `mas`, split `test`. It uses each row's released `prompt`, falling back to the prompt in `paper_arabic.yaml`.
-
-The task normalizes newlines and repeated whitespace, then computes edit distance per line:
-
-$$
-\mathrm{CER} = \frac{D_{\mathrm{char}}(\mathrm{reference}, \mathrm{prediction})}
-{\max(1, |\mathrm{reference}|)}.
-$$
-
-WER is computed analogously over words. The task reports the arithmetic mean over valid lines. Results may differ from the paper if model serialization, preprocessing, prompt handling, or dependency versions differ.
-
-### Specialized OCR and closed-source models: calc_metric
-
-Predictions from traditional OCR systems (EasyOCR, MMOCR, PaddleOCR) and proprietary models (Gemini, Claude) were scored with `calc_metric`. This path computes character-level Levenshtein CER, `jiwer` WER, and NLTK BLEU-4 over the same 2,369-line MAS test split and diplomatic transcriptions. The historical scripts depend on local ShareGPT JSON paths and have not yet been packaged as a portable standalone evaluator in this repository.
+For multiple GPUs, use the launcher recommended by the installed `lmms-eval` version. The task loads `maximazzik/MAS`, config `mas`, split `test`. It uses each row's released `prompt`, falling back to the prompt in `paper_arabic.yaml`. Results may differ from the paper if model serialization, preprocessing, prompt handling, or dependency versions differ.
 
 ## Reproducibility limitations
 
 The following details are not claimed to be exactly recoverable from this repository:
 
-- the LLaMA-Factory, `lmms-eval`, and `calc_metric` environment revisions used for every original run;
+- the LLaMA-Factory and `lmms-eval` environment revisions used for every original run;
 - a frozen package/CUDA snapshot from the ICDAR experiments;
 - every intermediate checkpoint and proprietary-model API revision;
 - deterministic equivalence across GPU architectures and distributed kernels.

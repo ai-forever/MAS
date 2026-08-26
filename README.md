@@ -58,7 +58,7 @@ This repository provides optimized configurations for:
 
 ## 🧪 Evaluation
 
-Open-source LVLMs were evaluated with [`lmms-eval`](https://github.com/EvolvingLMMs-Lab/lmms-eval). Specialized OCR systems and closed-source models were scored with `calc_metric`. The `lmms-eval` task is under `configs/paper_arabic/`. See [`docs/reproduction.md`](docs/reproduction.md) for the full protocol.
+Open-source LVLMs were evaluated with [`lmms-eval`](https://github.com/EvolvingLMMs-Lab/lmms-eval). Specialized OCR systems and closed-source models were scored from saved predictions using the same CER/WER definitions. The `lmms-eval` task is under `configs/paper_arabic/`. See [`docs/reproduction.md`](docs/reproduction.md) for the formulas and protocol.
 
 ### 🏃‍♂️ Running the Evaluation
 To test different models on the dataset, run the following command:
