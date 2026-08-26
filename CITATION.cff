@@ -1,0 +1,62 @@
+cff-version: 1.2.0
+message: "If you use MAS or these configurations, please cite the ICDAR paper."
+title: "MAS: A Millennium of Arabic Manuscripts in Three Styles"
+type: software
+authors:
+  - family-names: Novopoltsev
+    given-names: Maxim
+  - family-names: Murtazin
+    given-names: Ruslan
+  - family-names: Sakhovskiy
+    given-names: Andrey
+  - family-names: Bojarskaja
+    given-names: Emilia
+  - family-names: Kokh
+    given-names: Vladimir
+  - family-names: Ulitin
+    given-names: Ivan
+  - family-names: Abdullayev
+    given-names: Botirjon
+  - family-names: Aminov
+    given-names: Khamidulla
+  - family-names: Ismoilov
+    given-names: Masudkhon
+  - family-names: Budennyy
+    given-names: Semen
+repository-code: "https://github.com/ai-forever/MAS"
+url: "https://huggingface.co/datasets/maximazzik/MAS"
+identifiers:
+  - type: doi
+    value: "10.1007/978-3-032-36033-5_38"
+    description: "ICDAR paper"
+preferred-citation:
+  type: conference-paper
+  title: "A Millennium of Arabic Manuscripts in Three Styles: A Line-Level OCR Benchmark for Naskh, Taliq, and Nastaliq"
+  authors:
+    - family-names: Novopoltsev
+      given-names: Maxim
+    - family-names: Murtazin
+      given-names: Ruslan
+    - family-names: Sakhovskiy
+      given-names: Andrey
+    - family-names: Bojarskaja
+      given-names: Emilia
+    - family-names: Kokh
+      given-names: Vladimir
+    - family-names: Ulitin
+      given-names: Ivan
+    - family-names: Abdullayev
+      given-names: Botirjon
+    - family-names: Aminov
+      given-names: Khamidulla
+    - family-names: Ismoilov
+      given-names: Masudkhon
+    - family-names: Budennyy
+      given-names: Semen
+  collection-title: "Document Analysis and Recognition — ICDAR 2026"
+  publisher:
+    name: "Springer Nature Switzerland"
+  year: 2027
+  start: 643
+  end: 659
+  doi: "10.1007/978-3-032-36033-5_38"

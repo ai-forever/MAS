@@ -1,5 +1,11 @@
-*
-!configs/
-!configs/**
-!README.md
-!.gitignore
+saves/
+results/
+*.pt
+*.pth
+*.bin
+*.safetensors
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+.env

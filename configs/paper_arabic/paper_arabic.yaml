@@ -1,8 +1,6 @@
-dataset_path: path/to/data
-dataset_name: arabic
-dataset_kwargs:
-  token: True
-  load_from_disk: True
+dataset_path: maximazzik/MAS
+dataset_name: mas
+dataset_kwargs: {}
 
 test_split: test
 task: "paper_arabic"
@@ -31,7 +29,7 @@ metric_list:
     
 lmms_eval_specific_kwargs:
   default:
-    prompt: "You are an expert OCR engine specialized in handwritten historical documents. Transcribe **every** character exactly as it appears — preserve original spelling, punctuation, diacritics, ligatures, and archaic letters (ѣ, і, ѳ, etc.). Do **not** add, omit, normalize, correct, or format in any way. Output plain text only, matching the input one-to-one."
+    prompt: "Transcribe the Arabic manuscript line exactly as written. Preserve spelling, punctuation, dots, diacritics, and historical forms without normalization or correction. Output only the transcription."
 
 metadata:
   - version: 0.1

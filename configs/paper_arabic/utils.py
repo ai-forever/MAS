@@ -172,7 +172,7 @@ def paper_arabic_to_visual(doc):
 
 
 def paper_arabic_doc_to_text(doc, lmms_eval_specific_kwargs):
-    return lmms_eval_specific_kwargs.get("prompt", "")
+    return doc.get("prompt") or lmms_eval_specific_kwargs.get("prompt", "")
 
 
 def paper_arabic_process_results(doc, results, global_entries=None):
