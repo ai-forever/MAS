@@ -56,9 +56,9 @@ This repository provides optimized configurations for:
 - **PaddleOCR (PP-OCRv4/v5)**: Production-ready pipeline with Server and Mobile variants.
 - **MMOCR**: Modular framework featuring the ABINet architecture.
 
-## 🧪 Evaluation with `lmms-eval`
+## 🧪 Evaluation
 
-We include a custom task configuration compatible with the [`lmms-eval`](https://github.com/EvolvingLMMs-Lab/lmms-eval) framework to facilitate benchmarking of Large Vision-Language Models (LVLMs) on the MAS dataset. The task is located under `configs/paper_arabic/` and includes the YAML configuration and custom utility scripts for data loading and metric computation.
+Open-source LVLMs were evaluated with [`lmms-eval`](https://github.com/EvolvingLMMs-Lab/lmms-eval). Specialized OCR systems and closed-source models were scored with `calc_metric`. The `lmms-eval` task is under `configs/paper_arabic/`. See [`docs/reproduction.md`](docs/reproduction.md) for the full protocol.
 
 ### 🏃‍♂️ Running the Evaluation
 To test different models on the dataset, run the following command:

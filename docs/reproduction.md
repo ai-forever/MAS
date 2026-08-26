@@ -8,7 +8,7 @@ The repository contains:
 
 - MAS data registration and a canonical Qwen2.5-VL-3B LoRA configuration;
 - specialized OCR configurations for EasyOCR, MMOCR, and PaddleOCR;
-- an optional `lmms-eval` task for independent evaluation;
+- the `lmms-eval` task used for open-source LVLM evaluation;
 - the hyperparameters reported in the paper.
 
 The repository does not vendor LLaMA-Factory or `lmms-eval`. Exact commit hashes and complete environment snapshots from the original ICDAR runs were not retained here, so package evolution may cause behavioral differences.
@@ -91,23 +91,12 @@ These files are intended to be used with their upstream frameworks. Replace loca
 
 ## Evaluation used in the paper
 
-The original experiments did **not** use `lmms-eval`. Their evaluation pipeline was:
+The experiments used two evaluation paths:
 
-```text
-LoRA training
-  → merge adapter into the base model
-  → greedy inference with calc_metrics_multi.py
-  → line-level CER/WER/BLEU CSV
-  → aggregation by script and domain
-```
+1. Open-source LVLMs were evaluated with `lmms-eval`.
+2. Specialized OCR systems and proprietary closed-source models were evaluated with `calc_metric`.
 
-Inference used deterministic decoding (`do_sample: false`) and the same diplomatic-transcription instruction across models. CER was computed as character-level Levenshtein distance divided by reference length, WER with `jiwer`, and BLEU-4 with NLTK smoothing method 4. Reported values are arithmetic means over lines.
-
-The historical evaluation scripts depend on the original LLaMA-Factory checkout, local ShareGPT JSON paths, and additional worker files. They have not yet been packaged into a portable standalone evaluator in this repository. Therefore, the released results can be independently checked against the same MAS split, but the exact historical command is not claimed to run unchanged outside the original environment.
-
-## Optional evaluation with lmms-eval
-
-The included task is a portable post-publication evaluation route, not the pipeline that produced the paper tables.
+### Open-source LVLMs: lmms-eval
 
 Copy `configs/paper_arabic/` into the `lmms_eval/tasks/` directory of a compatible [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval) checkout. Evaluate a merged model on one GPU with:
 
@@ -132,11 +121,15 @@ $$
 
 WER is computed analogously over words. The task reports the arithmetic mean over valid lines. Results may differ from the paper if model serialization, preprocessing, prompt handling, or dependency versions differ.
 
+### Specialized OCR and closed-source models: calc_metric
+
+Predictions from traditional OCR systems (EasyOCR, MMOCR, PaddleOCR) and proprietary models (Gemini, Claude) were scored with `calc_metric`. This path computes character-level Levenshtein CER, `jiwer` WER, and NLTK BLEU-4 over the same 2,369-line MAS test split and diplomatic transcriptions. The historical scripts depend on local ShareGPT JSON paths and have not yet been packaged as a portable standalone evaluator in this repository.
+
 ## Reproducibility limitations
 
 The following details are not claimed to be exactly recoverable from this repository:
 
-- the LLaMA-Factory commit hash and historical evaluation environment used for every original run;
+- the LLaMA-Factory, `lmms-eval`, and `calc_metric` environment revisions used for every original run;
 - a frozen package/CUDA snapshot from the ICDAR experiments;
 - every intermediate checkpoint and proprietary-model API revision;
 - deterministic equivalence across GPU architectures and distributed kernels.
