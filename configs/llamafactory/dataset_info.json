@@ -1,0 +1,34 @@
+{
+  "mas_train": {
+    "hf_hub_url": "maximazzik/MAS",
+    "subset": "mas",
+    "split": "train",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages",
+      "images": "image"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "mas_test": {
+    "hf_hub_url": "maximazzik/MAS",
+    "subset": "mas",
+    "split": "test",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages",
+      "images": "image"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  }
+}
