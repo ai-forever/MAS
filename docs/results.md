@@ -20,6 +20,11 @@ The values below are taken from the final paper and are measured on the 2,369-li
 
 The best evaluated LVLM, Qwen2.5-VL-3B trained on MAS and Muharaf, also achieved lower CER than the evaluated proprietary zero-shot models: Gemini 3 Flash Preview (0.275) and Claude 4.6 Sonnet (0.380). EasyOCR remained the strongest supervised task-specific baseline.
 
+<p align="center">
+  <img src="../assets/fig_cer_by_domain_mas_variants.png" alt="Qwen2.5-VL-3B CER by domain under MAS, SARD, and Muharaf training mixes" width="720">
+</p>
+<p align="center"><em>Domain-wise CER for Qwen2.5-VL-3B. Adding Muharaf helps consistently; adding SARD raises error on mathematics and Sufi literature.</em></p>
+
 ## Script-wise transfer
 
 | Model | Training data | Naskh CER/WER | Taliq CER/WER | Nastaliq CER/WER |

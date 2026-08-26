@@ -15,14 +15,18 @@ The local validation subset used during the experiments is published as `test`, 
 
 ## Coverage
 
-The manuscripts span copies from the 12th to the 20th century and compositions from the 10th to the early 20th century. They cover six released domain labels:
+Copies date from the 12th to the 20th century; compositions from the 10th to the early 20th. The paper groups the collection into **five domains**: astronomy, history, mathematics, religion, and Sufi literature.
 
-- advice to rulers (`siyasat`);
-- astronomy (`astronomy`);
-- history (`history`);
-- prayer collections (`prayers`);
-- mathematics (`mathematics`);
-- Sufi literature (`sufi_lit`).
+The Hugging Face `domain` field uses six machine-readable labels. `siyasat` (advice to rulers) and `prayers` together correspond to the paper's Religion group:
+
+| Paper domain | `domain` | `domain_label` |
+|---|---|---|
+| Astronomy | `astronomy` | Astronomy |
+| History | `history` | History |
+| Mathematics | `mathematics` | Mathematics |
+| Religion | `siyasat` | Advice to rulers (siyasat-nama) |
+| Religion | `prayers` | Prayer collection |
+| Sufi literature | `sufi_lit` | Sufi literature |
 
 ## Record schema
 

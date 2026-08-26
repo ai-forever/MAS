@@ -13,8 +13,13 @@ The dataset is available on Hugging Face: [maximazzik/MAS](https://huggingface.c
 The MAS dataset aims to bridge the gap in Arabic OCR by providing authentic historical benchmarks. While existing datasets often feature modern scribed text under controlled conditions, MAS provides:
 - **11,841 annotated lines** from historical manuscripts.
 - **Three major calligraphic styles**: Naskh, Taliq, and Nastaliq.
-- **Multiple scholarly domains**: Astronomy, History, Mathematics, Religion, and Sufi Literature.
+- **Five scholarly domains**: astronomy, history, mathematics, religion, and Sufi literature.
 - **Millennium coverage**: Documents dating from the 10th to the 20th centuries.
+
+<p align="center">
+  <img src="assets/calligraphy-styles.jpg" alt="Naskh, Taliq, and Nastaliq page examples from MAS" width="900">
+</p>
+<p align="center"><em>Calligraphic styles in MAS, left to right: Naskh, Taliq, Nastaliq.</em></p>
 
 Our research demonstrates that modern LVLMs have poor zero-shot performance on medieval scripts. After parameter-efficient fine-tuning, compact open-source LVLMs surpass the evaluated proprietary zero-shot models and approach strong specialized OCR baselines.
 
@@ -30,7 +35,7 @@ Our research demonstrates that modern LVLMs have poor zero-shot performance on m
 
 ```text
 .
-├── assets/                 # Conference and documentation assets
+├── assets/                 # Conference logo, style examples, result figures
 ├── configs/                # Training and evaluation configurations
 │   ├── easy_ocr_...        # EasyOCR fine-tuning configs
 │   ├── mmocr_...           # MMOCR ABINet configs
